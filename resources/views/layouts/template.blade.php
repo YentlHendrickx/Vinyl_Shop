@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <title>@yield('title', 'The Vinyl Shop')</title>
-    @include('shared.icons');
+    @include('shared.icons')
 </head>
 <body>
 
@@ -16,7 +16,6 @@
 </main>
 
 @include('shared.foooter')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+<script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>
