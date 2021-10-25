@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'home');
+Route::get('shop', 'ShopController@index');
+Route::get('shop/{id}', 'ShopController@show');
 Route::view('contact-us', 'contact');
 Route::prefix('admin')->group(function () {
     Route::get('records','Admin\RecordController@index');
