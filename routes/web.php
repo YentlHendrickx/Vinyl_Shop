@@ -18,6 +18,7 @@ Route::get('shop', 'ShopController@index');
 Route::get('shop/{id}', 'ShopController@show');
 Route::view('contact-us', 'contact');
 Route::get('shop_alt', 'ShopController@alt');
+Route::get('itunes', 'ItunesController@index');
 Route::prefix('admin')->group(function () {
     Route::get('records','Admin\RecordController@index');
 });

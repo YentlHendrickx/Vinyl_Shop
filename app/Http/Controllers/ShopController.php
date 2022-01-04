@@ -70,13 +70,14 @@ class ShopController extends Controller
         $record->price = number_format($record->price,2);
         $record->makeHidden(['genre', 'artist', 'genre_id', 'created_at', 'updated_at', 'title_mbid', 'genre']);
 
-        // get record info and convert it to json
+        // Get record info and convert to JSON
         $response = Http::get($record->recordUrl)->json();
         $tracks = $response['media'][0]['tracks'];
 
         $tracks = collect($tracks)
             ->transform(function ($item, $key) {
-                $item['length'] = date('i:s', $item['length'] / 1000);      // PHP works with sec, not ms!!!
+                // Conert ms to seconds
+                $item['length'] = date('i:s', $item['length'] / 1000);
                 unset($item['id'], $item['recording'], $item['number']);
                 return $item;
             });
