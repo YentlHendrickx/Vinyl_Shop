@@ -2,27 +2,16 @@
 
 @section('title', 'Shop')
 
-@section('css_after')
-    <style>
-        .card {
-            cursor: pointer;
-        }
-        .card .btn, form .btn {
-            display: none;
-        }
-    </style>
-@endsection
-
 @section('main')
     <h1>Shop</h1>
     <form method="get" action="/shop" id="searchForm">
         <div class="row">
-            <div class="col-sm-6 mb-2">
-                <input type="text" class="form-control" name="artist" id="artist"
+            <div class="col-sm-7 mb-2">
+                <input type="text" class="form-control col-sm-12" name="artist" id="artist"
                        value="{{ request()->artist }}"
                        value="" placeholder="Filter Artist Or Record">
             </div>
-            <div class="col-sm-4 mb-2">
+            <div class="col-sm-5 mb-2">
                 <select class="form-control" name="genre_id" id="genre_id">
                     <option value="%">All genres</option>
                     @foreach($genres as $genre)
@@ -31,15 +20,12 @@
                     @endforeach
                 </select>
             </div>
-            <div class="col-sm-2 mb-2">
-                <button type="submit" class="btn btn-success btn-block">Search</button>
-            </div>
         </div>
     </form>
     <hr>
     @if ($records->count() == 0)
         <div class="alert alert-danger alert-dismissible fade show">
-            Can't find any artist or album with <b>'{{ request()->artist }}'</b> for this genre
+            Can't find any artist or album with <b>'{{ request()->artist }}'</b>
             <button type="button" class="close" data-dismiss="alert">
                 <span>&times;</span>
             </button>
@@ -47,9 +33,9 @@
     @endif
 
     {{ $records->links() }}
-    <div class="row">
+    <div class="row cardShopMaster">
         @foreach($records as $record)
-        <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+        <div class="col-sm-6 col-md-4 col-lg-3 mb-3 d-flex">
             <div class="card" data-id="{{ $record->id }}">
                 <img class="card-img-top" src="/assets/vinyl.png" data-src="{{ $record->cover }}" alt="{{ $record->artist }} - {{ $record->title }}">
                 <div class="card-body">
