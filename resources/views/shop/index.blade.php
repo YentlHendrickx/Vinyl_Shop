@@ -25,7 +25,14 @@
     <hr>
     @if ($records->count() == 0)
         <div class="alert alert-danger alert-dismissible fade show">
-            Can't find any artist or album with <b>'{{ request()->artist }}'</b>
+            @if (request()->genre_id > 0)
+                <p class="m-0">Can't find any artist or album with <b>'{{ request()->artist }}'</b> and genre <b>{{$genres->first(function($item){
+                    return $item->id == request()->genre_id;
+                })->name}}</b></p>
+            @else
+                <p class="m-0">Can't find any artist or album with <b>'{{ request()->artist }}'</b></p>
+            @endif
+
             <button type="button" class="close" data-dismiss="alert">
                 <span>&times;</span>
             </button>
