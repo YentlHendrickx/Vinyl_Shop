@@ -19,5 +19,10 @@
 @include('shared.foooter')
 <script src="{{ mix('js/app.js') }}"></script>
 @yield('script_after')
+@if(env('APP_DEBUG'))
+    <script>
+        $('form').attr('novalidate', 'true');
+    </script>
+@endif
 </body>
 </html>
