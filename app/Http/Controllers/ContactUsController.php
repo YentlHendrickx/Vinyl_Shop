@@ -17,7 +17,8 @@ class ContactUsController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'email' => 'required|email',
-            'message' => 'required|min:10'
+            'message' => 'required|min:10',
+            'contact' => 'required'
         ]);
 
         $email = new ContactMail($request);

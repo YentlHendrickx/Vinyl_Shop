@@ -30,8 +30,20 @@ class ContactMail extends Mailable
      */
     public function build()
     {
-        return $this->from('info@thevinylshop.com', 'The Vinyl Shop - Info')
-            ->cc('info@thevinylshop.com', 'The Vinyl Shop - Info')
+        $email = "";
+        $name = "";
+        if ($this->request->contact == "info") {
+            $email = "info@thevinylshop.com";
+            $name = "The Vinyl Shop - Info";
+        } else if ($this->request->contact == "billing") {
+            $email = "billing@thevinylshop.com";
+            $name = "The Vinyl Shop - Billing";
+        } if ($this->request->contact == "support") {
+            $email = "support@thevinylshop.com";
+            $name = "The Vinyl Shop - Support";
+        }
+        return $this->from($email, $name)
+            ->cc($email, $name)
             ->subject('The Vinyl Shop - Contact Form')
             ->markdown('email.contact');
     }

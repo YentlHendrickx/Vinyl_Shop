@@ -2,11 +2,19 @@
 
 @section('title', 'Contact Info')
 
+@section('css_after')
+    <style>
+        .close {
+            display: none;
+        }
+    </style>
+@endsection
+
 @section('main')
     <h1>Contact us</h1>
     @include('shared.alert')
     @if (!session()->has('success'))
-    <form action="/contact-us" method="post" novalidate>
+    <form action="/contact-us" method="post">
         @csrf
         <div class="form-group">
             <label for="name">Name</label>
@@ -30,10 +38,28 @@
         </div>
         <div class="form-group">
             <label for="contact">Contact</label>
-            <select class="form-select" name="contact" id="contact" required value="{{old('contact')}}">
-                <option value="info">The Vinyl Shop - Info</option>
-                <option value="billing">The Vinyl Shop - Billing</option>
-                <option value="support">The Vinyl Shop - Support</option>
+            <select name="contact" id="contact"
+                    class="form-control {{ $errors->any() ? ($errors->first('contact') ? 'is-invalid' : 'is-valid') : '' }}"
+                    class="form-control"
+                    placeholder="Your email"
+                    required
+                    value="{{old('contact')}}">
+                <option value="" selected disabled>Select Contact</option>
+                @if (old('contact') == "info")
+                    <option value="info" selected>The Vinyl Shop - Info</option>
+                @else
+                    <option value="info">The Vinyl Shop - Info</option>
+                @endif
+                @if (old('contact') == "billing")
+                    <option value="billing" selected>The Vinyl Shop - Billing</option>
+                @else
+                    <option value="billing">The Vinyl Shop - Billing</option>
+                @endif
+                @if (old('contact') == "support")
+                    <option value="support" selected>The Vinyl Shop - Support</option>
+                @else
+                    <option value="support">The Vinyl Shop - Support</option>
+                @endif
             </select>
             <div class="invalid-feedback">{{ $errors->first('contact') }}</div>
         </div>
