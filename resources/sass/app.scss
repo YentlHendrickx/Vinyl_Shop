@@ -8,16 +8,5 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-//Custom code
-main {
-    min-height: 500px;
-}
-
-.cardShopMaster{
-    .card {
-        cursor: pointer;
-    }
-    .card .btn, form .btn {
-        display: none;
-    }
-}
+// Custom code
+//@import '../main';
