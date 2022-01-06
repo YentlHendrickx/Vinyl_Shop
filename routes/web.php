@@ -27,6 +27,13 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('records','Admin\RecordController@index');
 });
 
+Route::middleware(['auth'])->prefix('user')->group(function () {
+    Route::redirect('/', '/user/profile');
+    Route::get('profile', 'User\ProfileController@edit');
+    Route::post('profile', 'User\ProfileController@update');
+    Route::get('password', 'User\PasswordController@edit');
+    Route::post('password', 'User\PasswordController@update');
+});
 
 Auth::routes();
 
