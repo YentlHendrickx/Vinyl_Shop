@@ -44,10 +44,6 @@ class ShopController extends Controller
     }
 
     public function alt(Request $request) {
-        $records = Record::with(['genre' => function($q) {
-            $q->orderBy('name', 'desc');
-        }])->get()->sortBy('artist');
-
         $genres = Genre::has('records')->with(['records' => function($q) {
             $q->orderBy('artist', 'asc');
         }])->get()->transform(function ($item, $key) {
@@ -55,7 +51,7 @@ class ShopController extends Controller
             return $item;
         })->sortBy('name');
 
-        $result = compact('records', 'genres');     // $result = ['genres' => $genres, 'records' => $records]
+        $result = compact( 'genres');     // $result = ['genres' => $genres, 'records' => $records]
         Json::dump($result);
         return view('shop.altindex', $result);
     }

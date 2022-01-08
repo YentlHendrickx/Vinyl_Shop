@@ -4,7 +4,7 @@
 
 @section('main')
     <h1>Shop - alternative listing</h1>
-    @if ($records->count() == 0)
+    @if ($genres->count() == 0)
         <div class="alert alert-danger alert-dismissible fade show">
             Can't find any artist or album.
             <button type="button" class="close" data-dismiss="alert">
